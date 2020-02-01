@@ -1,16 +1,17 @@
 const FILES_TO_CACHE = [
   "/",
-  "/offline.html",
+  //"/offline.html",
   "/index.html",
   "/style.css",
   "/assets/css/style.css",
-  "index.js",  
-  "assets/js/loadPosts.js",  
+  "/index.js",  
+  "/db.js",
+  "/assets/js/loadPosts.js",  
   "/manifest.webmanifest",
-  "favicon.ico"  
+  "/favicon.ico"  
 ];
 
-const CACHE_NAME = "static-cache-v2";
+const CACHE_NAME = "static-cache-v1";
 const DATA_CACHE_NAME = "data-cache-v1";
 
 // install
@@ -44,7 +45,7 @@ self.addEventListener("activate", function(evt) {
 
 // fetch
 self.addEventListener("fetch", function(evt) {
-  if (evt.request.url.includes("/api/")) {
+  if (evt.request.url.includes("/")) {
     evt.respondWith(
       caches.open(DATA_CACHE_NAME).then(cache => {
         return fetch(evt.request)
